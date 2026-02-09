@@ -1,0 +1,1 @@
+g++ main.cpp src/Core/*.cpp src/Entities/*.cpp src/World/*.cpp -o bin/game -I"./include" -lsfml-graphics -lsfml-window -lsfml-system
