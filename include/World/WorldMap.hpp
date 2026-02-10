@@ -21,6 +21,8 @@ public:
 
 private:
     sf::VertexArray m_vertices;
+    sf::VertexArray m_wallsSE;
+    sf::VertexArray m_wallsSW;
     const int m_tileSize = 128; // Updated for 128x64 tiles
     const int m_width = 20;
     const int m_height = 15;

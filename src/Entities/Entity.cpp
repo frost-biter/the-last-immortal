@@ -8,7 +8,7 @@ Entity::Entity(float radius, sf::Color color, sf::Vector2f position, float speed
     m_shape.setFillColor(color);
     m_shape.setOrigin({radius, radius});
     m_shape.setPosition(position);
-    m_sprite.setScale(0.5f, 0.5f);
+    m_sprite.setScale(0.125f, 0.125f);
 }
 
 void Entity::draw(sf::RenderWindow& window) {
@@ -79,9 +79,9 @@ void Entity::moveAndClamp(float dt, sf::Vector2f mapBounds) {
 
     // Flip sprite based on movement direction (Mirroring)
     if (totalVelocity.x < -0.1f) {
-        m_sprite.setScale(-0.25f, 0.25f);
+        m_sprite.setScale(-0.125f, 0.125f);
     } else if (totalVelocity.x > 0.1f) {
-        m_sprite.setScale(0.25f, 0.25f);
+        m_sprite.setScale(0.125f, 0.125f);
     }
 
     sf::Vector2f nextPos = m_shape.getPosition() + totalVelocity * dt;

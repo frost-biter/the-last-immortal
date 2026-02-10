@@ -35,37 +35,36 @@ void AssetManager::addAnimation(const std::string& name, const std::string& text
 }
 
 void AssetManager::loadAnimations() {
-    // -----------------------------------------------------------
-    // FIX: Using calculated dimensions from 2816x1536 image
-    // Frame Width: 352px, Frame Height: 384px
-    // -----------------------------------------------------------
+    // --- CULTIVATOR ASSETS ---
+    {
+        std::string tex = "assets/character/cultivator_sprites_transparent.png";
+        int w = 352;
+        int h = 384;
+        int cols = 8;
+        int len = 8;
 
-    int frameW = 352; 
-    int frameH = 384;
-    int cols = 8;
-    // Use all 8 frames for smooth animation
-    int animLen = 8; 
+        addAnimation("Cultivator_Standing", tex, 0,  len, w, h, cols, 0.15f);
+        addAnimation("Cultivator_Walking",  tex, 8,  len, w, h, cols, 0.15f);
+        addAnimation("Cultivator_Sitting",  tex, 16, len, w, h, cols, 0.15f);
+        addAnimation("Cultivator_Attacking",tex, 24, len, w, h, cols, 0.1f);
+    }
 
-    // CULTIVATOR (Blue)
-    std::string pTex = "assets/character/cultivator_sprites_transparent.png";
-    
-    // Row 0 (ID 0) -> Standing
-    addAnimation("Cultivator_Standing", pTex, 0,  animLen, frameW, frameH, cols, 0.15f);
-    // Row 1 (ID 8) -> Walking
-    addAnimation("Cultivator_Walking",  pTex, 8,  animLen, frameW, frameH, cols, 0.15f);
-    // Row 2 (ID 16) -> Sitting
-    addAnimation("Cultivator_Sitting",  pTex, 16, animLen, frameW, frameH, cols, 0.15f);
-    // Row 3 (ID 24) -> Attacking
-    addAnimation("Cultivator_Attacking",pTex, 24, animLen, frameW, frameH, cols, 0.1f);
+    // --- RIVAL ASSETS ---
+    {
+        std::string tex = "assets/character/rival_sprites_transparent.png"; 
+        int w = 352;
+        int h = 384;
+        int cols = 8;
+        int len = 8;
 
-    // RIVAL (Red)
-    std::string rTex = "assets/character/rival_sprites_transparent.png"; 
-    int rivalW = 352; // 1408 / 4
-    int rivalH = 384; // 752 752 / 4
+        addAnimation("Rival_Standing", tex, 0,  len, w, h, cols, 0.15f);
+        addAnimation("Rival_Walking",  tex, 8,  len, w, h, cols, 0.15f);
+        addAnimation("Rival_Sitting",  tex, 16, len, w, h, cols, 0.15f);
+        addAnimation("Rival_Attacking",tex, 24, len, w, h, cols, 0.1f);
+    }
 
-    // Uses same layout
-    addAnimation("Rival_Standing", rTex, 0,  animLen, rivalW, rivalH, cols, 0.15f);
-    addAnimation("Rival_Walking",  rTex, 8,  animLen, rivalW, rivalH, cols, 0.15f);
-    addAnimation("Rival_Sitting",  rTex, 16, animLen, rivalW, rivalH, cols, 0.15f);
-    addAnimation("Rival_Attacking",rTex, 24, animLen, rivalW, rivalH, cols, 0.1f);
+    // Spirit Essence (Nebula)
+    // 800x800, 8x8, 61 frames
+    std::string eTex = "assets/Free Pixel Effects Pack/12_nebula_spritesheet.png";
+    addAnimation("SpiritEssence", eTex, 0, 61, 100, 100, 8, 0.05f);
 }

@@ -52,10 +52,11 @@ void Game::update(sf::Time dt) {
     m_essenceSpawnTimer += dt.asSeconds();
     if (m_essenceSpawnTimer > 3.0f && m_essences.size() < 5) {
         m_essenceSpawnTimer = 0.f;
-        sf::Vector2f bounds = m_map.getBounds();
-        float x = static_cast<float>(rand() % static_cast<int>(bounds.x));
-        float y = static_cast<float>(rand() % static_cast<int>(bounds.y));
-        m_essences.emplace_back(sf::Vector2f(x, y));
+        // Isometric Spawning (Grid 20x15)
+        float gx = static_cast<float>(rand() % 20);
+        float gy = static_cast<float>(rand() % 15);
+        sf::Vector2f isoPos = m_map.gridToIso(gx, gy);
+        m_essences.emplace_back(isoPos);
     }
 
     // 1. GATHER ENTITIES & RANKING
@@ -77,6 +78,11 @@ void Game::update(sf::Time dt) {
     m_rankingText.setString(rankStr);
 
     // 2. MERGED QI LOGIC (Cave + Essence + Meditation)
+    // Update Essence Animations
+    for (auto& essence : m_essences) {
+        essence.update(dt.asSeconds());
+    }
+
     m_drainBeams.clear();
     
     for (auto* ent : entities) {
